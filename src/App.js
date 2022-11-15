@@ -4,9 +4,7 @@ import { useState } from "react";
 import contactsJSON from "./contacts.json";
 
 function App() {
-  
-  const [contacts, setContacts] = useState(contactsJSON.slice(1,10)); 
-
+  const [contacts, setContacts] = useState(contactsJSON.slice(5,10)); 
   return (
     <div className="App">
       <h1>IronContacts</h1>
@@ -37,6 +35,7 @@ function App() {
             <th>Popularity</th>
             <th>Won an Oscar</th>
             <th>Won a Emmy</th>
+            <th>Actions</th>
           </tr>
         </thead>
         {contacts.map(
@@ -52,13 +51,20 @@ function App() {
                   />
                 </td>
                 <td>{name}</td>
-                <td>{popularity.toFixed(2)}</td>
+               <td>{popularity.toFixed(2)}</td>
                 {wonOscar  ? <td>🏆</td> : <td></td>} 
                 {wonEmmy  ? <td>🏆</td> : <td></td>} 
-              </tr>
-            </tbody>
-          );
-        })}
+                
+                {/* delete button */}
+                <button onClick={()=>{
+                 const deleteContact=contacts.filter(contacts =>{
+                  return contacts.id !== id});
+                 setContacts(deleteContact)
+                 }}>Delete</button>
+               </tr>
+             </tbody>
+            );
+          })}
       </table>
     </div>
   );
