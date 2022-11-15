@@ -5,10 +5,15 @@ import contactsJSON from "./contacts.json";
 
 function App() {
   
-  const [contacts, setContacts] = useState(contactsJSON.slice(5,10)); 
+  const [contacts, setContacts] = useState(contactsJSON.slice(1,20)); 
   return (
     <div className="App">
       <h1>IronContacts</h1>
+      <button onClick={()=>{
+        const newContact=contactsJSON[Math.floor(Math.random()*contactsJSON.length)]
+        setContacts([...contacts, newContact])
+      }}>Add Random Contact</button>
+        <table></table>
       <table>
         <thead>
           <tr>
