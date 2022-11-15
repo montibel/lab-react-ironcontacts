@@ -5,14 +5,29 @@ import contactsJSON from "./contacts.json";
 
 function App() {
   
-  const [contacts, setContacts] = useState(contactsJSON.slice(1,20)); 
+  const [contacts, setContacts] = useState(contactsJSON.slice(1,10)); 
+
   return (
     <div className="App">
       <h1>IronContacts</h1>
+       {/* Add random*/}
       <button onClick={()=>{
-        const newContact=contactsJSON[Math.floor(Math.random()*contactsJSON.length)]
-        setContacts([...contacts, newContact])
+        const newRandomContact=contactsJSON[Math.floor(Math.random()*contactsJSON.length)]
+        setContacts([...contacts, newRandomContact])
       }}>Add Random Contact</button>
+
+      {/* Add by name*/}
+      <button onClick={()=>{
+        const newNameContact=contactsJSON.sort((a, b) => (a.name > b.name ? 1 : -1));
+        setContacts(newNameContact)
+      }}>Add by name</button>
+
+       {/* Add by popularity*/}
+      <button onClick={()=>{
+        const newPopContact=contactsJSON.sort((a, b) => b.popularity - a.popularity);
+        setContacts(newPopContact)
+      }}>Add by popularity</button>
+
         <table></table>
       <table>
         <thead>
